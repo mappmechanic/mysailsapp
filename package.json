@@ -1,0 +1,24 @@
+{
+    "name": "mySailsProject",
+    "private": true,
+    "version": "0.0.1",
+    "description": "A Sails application",
+    "dependencies": {
+        "sails": "0.9.7",
+        "grunt": "0.4.1",
+        "sails-disk": "~0.9.0",
+        "ejs": "0.8.4",
+        "optimist": "0.3.4",
+        "sails-mysql":"0.9.x",
+        "bcrypt":"0.7.7",
+        "moment":"2.x"
+    },
+    "scripts": {
+        "start": "node app.js",
+        "debug": "node debug app.js"
+    },
+    "main": "app.js",
+    "repository": "",
+    "author": "",
+    "license": ""
+}
