@@ -1,2 +1,6 @@
-# mySailsProject
+
 ### a Sails application
+=======
+mysailsapp
+==========
+
