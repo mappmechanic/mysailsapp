@@ -16,7 +16,7 @@ module.exports.adapters = {
 
   // If you leave the adapter config unspecified 
   // in a model definition, 'default' will be used.
-  'default': 'myLocalMySQLDatabase',
+  'default': 'herokuMySql',
 
   // Persistent adapter for DEVELOPMENT ONLY
   // (data is preserved when the server shuts down)
@@ -39,5 +39,16 @@ module.exports.adapters = {
     // so you don't inadvertently push it up if you're using version control
     password: '', 
     database: 'demo'
+  },
+
+  herokuMySql: {
+
+    module: 'sails-mysql',
+    host: 'us-cdbr-east-04.cleardb.com',
+    user: 'b88e3389cd11b9',
+    // Psst.. You can put your password in config/local.js instead
+    // so you don't inadvertently push it up if you're using version control
+    password: '45a2fbd1', 
+    database: 'heroku_0ffe19e3da9cd21'
   }
 };
