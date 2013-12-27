@@ -48,10 +48,32 @@ module.exports = {
 
   'getMetaData.plist':function(req,res)
   {
-  	console.log(req.query.buildId);
-  	res.set('Content-Type', 'text/xml');
-  	var buildUrl = "http://s3.amazonaws.com/ios.phonegap/slicehost-production/apps/604072/GMobile.ipa";
-  	res.send(buildPlistXml(buildUrl,'com.genpact.gmobile','1.0.0','gMobile App'));
+  	var buildId = req.query.buildId;
+  	if(buildId != undefined) {
+
+  		Build.findOne(buildId).done(function(err,build){
+  			if(err) 
+  				res.send(500,{errorMsg: "Invalid BuildId in the request."});
+
+  			console.log(build);
+
+  			if(build.platform != 'ios')
+  				res.send(500,{errorMsg: "Plist file is required for only iOS Builds."});
+
+
+  			App.findOne(build.appId).done(function(err,app){
+
+  				console.log(app);
+
+  				res.set('Content-Type', 'text/xml');
+			  	var buildUrl = build.packageUrl;
+			  	res.send(buildPlistXml(buildUrl,app.bundleIdentifier,build.buildVersion,app.appName));	
+  			});		
+  		});
+
+	  	
+  	}else
+  	  res.send(500,{errorMsg: "Invalid BuildId in the request."});
   }
   
 };
